@@ -1,0 +1,48 @@
+<div class="out">
+  <!-- <h1 style="background-color: rgb(206, 106, 39);">VENDING MACHINE</h1> -->
+  <h1 style="background-color: rgb(81,81,89); color:white;">VENDING MACHINE</h1>
+  <p ><b> Pay & choose your snack!</b></p>
+
+  <div>
+  <div class="pay"> 
+    <label for="amt"><b> Enter amount in Rs. : </b></label>
+    <input type="number" name="amt" class="amt" [(ngModel)]="amount" (keyup)="checkinput($event)">
+    
+
+    <label for="showCost"><b> Amount left : </b></label>&nbsp;
+    <span name="showCost">{{sum  | currency: 'INR'}}</span>
+
+    <div *ngIf="msg" class="message"><span>{{message}}</span></div>
+  </div>
+  
+
+  <div class="list" >
+    <span *ngFor="let i of items">{{i}} <br></span>
+  </div>
+
+</div>
+
+  
+  <div >
+    <button class="buttons" *ngFor="let snack of snackList" (click)="subtract(snack.cost, snack.name)" [disabled]="disable"> {{snack.name}} <br>{{snack.cost | currency: 'INR'}}</button>
+  </div><br>
+
+  <div class="submit">
+    <button (click)="show()">Enter</button>&nbsp;&nbsp;&nbsp;
+    <button (click)="reset()" class="reset">Reset</button>&nbsp;&nbsp;&nbsp;
+    <button (click)="undo()" [disabled]="disableUndo">Undo</button>
+  </div>
+<br>
+
+<div *ngIf="display" class="rem">
+  <label for="rem"><b> Amount returned in Rs: </b></label>&nbsp;
+    <span name="rem">{{tens}} tens, {{fives}} fives, {{twos}} twos and {{ones}} one rupee coins!</span>
+
+</div>
+ 
+  
+  
+
+  
+ 
+</div>
